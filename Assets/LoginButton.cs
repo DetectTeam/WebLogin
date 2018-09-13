@@ -34,9 +34,9 @@ public class LoginButton : MonoBehaviour
 		StartCoroutine( ILogin() );
 	}
 
-	IEnumerator ILogin()
+	private IEnumerator ILogin()
 	{
-		yield return null;
+	    Debug.Log( "Login  Called" );
 
 		WWWForm form = new WWWForm();
 
@@ -45,6 +45,8 @@ public class LoginButton : MonoBehaviour
 		
 		UnityWebRequest www = UnityWebRequest.Post( url , form );
 
+		yield return www.SendWebRequest();
+
 
 		if( www.isNetworkError )  
 		{
@@ -52,15 +54,21 @@ public class LoginButton : MonoBehaviour
 		}
 		else if( www.isHttpError  ) 
 		{
-				if( www.responseCode == emptyFormFields ) //422
+			
+			
+			Debug.Log( www.responseCode );
+			
+			if( www.responseCode == emptyFormFields ) //422
 			{
-				warningText.text = "Please fill in all fields marked in red.";
+				//warningText.text = "Please fill in all fields marked in red.";
 				
 				Debug.Log( www.downloadHandler.text );
 			
 				//Error results = JsonUtility.FromJson<Error>( www.downloadHandler.text );
 
 				var errors  = JsonHelper.getJsonArray<Error>( www.downloadHandler.text );
+
+				Debug.Log( www.downloadHandler.text );
 				
 				//Loop Through Fields
 				for( int x = 0; x < errors.Length; x++ )
@@ -70,8 +78,6 @@ public class LoginButton : MonoBehaviour
 					{
 						ColorChange( userName, Color.red );
 					}
-
-				
 
 					if( errors[x].param.Equals( "password" ) )
 					{
@@ -85,6 +91,20 @@ public class LoginButton : MonoBehaviour
 				warningText.gameObject.SetActive( true );
 
 				
+			}
+		}
+		else
+		{
+
+			Debug.Log( www.responseCode );
+
+			  warningText.text = "You are now logged in.";
+
+			if( www.downloadHandler.text != null )
+			{
+				var response = JsonUtility.FromJson<SuccessMessage>( www.downloadHandler.text );
+
+				Debug.Log( response.token );
 			}
 		}
 

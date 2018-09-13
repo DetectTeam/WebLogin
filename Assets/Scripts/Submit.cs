@@ -23,6 +23,7 @@ public class SuccessMessage
 {
 	public string message;
 	public string uid;
+	public string token;
 }
 
 
@@ -199,12 +200,9 @@ public class Submit : MonoBehaviour
 				uniqueIdHandler.PlayerPrefsKey = userName.text;
 				uniqueIdHandler.Uid = response.uid;
 
-			
 			}
 
-
 			responseHeaders = www.GetResponseHeaders();
-
         }
 	}
 
