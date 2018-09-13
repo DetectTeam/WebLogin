@@ -143,7 +143,6 @@ public class Submit : MonoBehaviour
 				warningText.gameObject.SetActive( true );
 			}
 			
-			
 			if( www.responseCode == emptyFormFields ) //422
 			{
 				warningText.text = "Please fill in all fields marked in red.";
@@ -197,24 +196,12 @@ public class Submit : MonoBehaviour
 			{
 				var response = JsonUtility.FromJson<SuccessMessage>( www.downloadHandler.text );
 
-				Debug.Log( "UID: " + response.uid );
-
-
 				uniqueIdHandler.PlayerPrefsKey = userName.text;
 				uniqueIdHandler.Uid = response.uid;
 
-				//  if( PlayerPrefs.HasKey("uid") )
-				//  {
-				//  	string uid = PlayerPrefs.GetString( userName.text );
-				//  	Debug.Log( "it worked..." + uid );
-				//  }
+			
 			}
 
-	
-			Debug.Log( www.responseCode );
-			Debug.Log( www.error );
-            Debug.Log( www.downloadHandler.text );
-			Debug.Log( www.GetResponseHeaders() );
 
 			responseHeaders = www.GetResponseHeaders();
 
