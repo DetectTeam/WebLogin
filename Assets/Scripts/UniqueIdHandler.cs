@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/*
+	Manages a Unique Id 
+	The Unique Id is revieved from the server after a successful registration request.
+	The unique id will be a part of all sessions created 
+	Will be used to associate user sessions with a particular user
+
+ */
+
 public class UniqueIdHandler
 {
 
