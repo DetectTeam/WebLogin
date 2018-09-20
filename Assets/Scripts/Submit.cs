@@ -185,8 +185,7 @@ public class Submit : MonoBehaviour
 				}
 
 				warningText.gameObject.SetActive( true );
-
-				
+	
 			}
         }
         else 

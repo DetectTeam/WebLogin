@@ -122,6 +122,7 @@ public class LoginButton : MonoBehaviour
 				if( response.token != "" )
 				{
 					//Save Token 
+					Debug.Log( "Token " + tokenHandler.Token );
 					tokenHandler.Token = response.token;
 
 				}

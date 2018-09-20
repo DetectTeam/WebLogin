@@ -6,6 +6,8 @@ using UnityEngine;
 	Saves and Loads WebToken from storage.
 	Storage may be player prefs, file or DB
 	At present its playerprefs.
+
+	Used to Authenticate user with web server
 */
 public class TokenHandler 
 {
